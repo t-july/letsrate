@@ -11,7 +11,7 @@ module Helpers
 
     star_img = options[:star_img] || "star"
 
-    readonly = !(current_user && rateable_obj.can_rate?(current_user, dimension))
+    readonly = options[:read_only] || !(current_user && rateable_obj.can_rate?(current_user, dimension))
 
     content_tag :div, '', "data-dimension" => dimension, :class => "star", "data-rating" => avg,
                 "data-id" => rateable_obj.id, "data-classname" => rateable_obj.class.name,
