@@ -11,6 +11,12 @@ $(function(){
       number: function() {
         return $(this).attr('data-star-count')
       },
+      starOn: function(){
+        return "assets/" + $(this).attr('data-img') + "-on.png";
+      },
+      starOff: function(){
+        return "assets/" + $(this).attr('data-img') + "-off.png";
+      },
       readOnly: $readonly,
       click: function(score, evt) {
         var _this = this;
