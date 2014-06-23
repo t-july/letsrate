@@ -10,7 +10,12 @@ Provides the best way to add rating capabilites to your Rails application with j
 
 Forked from [github.com/muratguzel/letsrate](https://github.com/muratguzel/letsrate)
 
-### Fixes bug on migrations generation
+## Fixes bug on migrations generation and adds several options
+```ruby
+read_only: Boolean
+star_img: String
+```
+
 
 ## Instructions
 
