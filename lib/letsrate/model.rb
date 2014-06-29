@@ -4,11 +4,17 @@ module Letsrate
 
   def rate(stars, user, dimension=nil, dirichlet_method=false)
     dimension = nil if dimension.blank?
-    raise "User has already rated." unless can_rate? user, dimension
+    # raise "User has already rated." unless can_rate? user, dimension
 
-    rates(dimension).create! do |r|
-      r.stars = stars
-      r.rater = user
+    rate_obj = rates(dimension).where(rater_id: user.id).first
+    if rate_obj
+      rate_obj.stars = stars
+      rate_obj.save!
+    else
+      rates(dimension).create! do |r|
+        r.stars = stars
+        r.rater = user
+      end
     end
 
     if dirichlet_method
@@ -46,7 +52,8 @@ module Letsrate
   end
 
   def can_rate?(user, dimension=nil)
-    rates(dimension).where(rater_id: user.id).size.zero?
+    # rates(dimension).where(rater_id: user.id).size.zero?
+    true
   end
 
   def rates(dimension=nil)
