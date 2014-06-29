@@ -29,6 +29,8 @@ module Helpers
 
     disable_after_rate = options[:disable_after_rate] || false
 
+    star_img = options[:star_img] || "star"
+
     readonly=false
     if disable_after_rate
       readonly = current_user.present? ? !rateable_obj.can_rate?(current_user.id, dimension) : true
@@ -38,7 +40,7 @@ module Helpers
                 "data-id" => rateable_obj.id, "data-classname" => rateable_obj.class.name,
                 "data-disable-after-rate" => disable_after_rate,
                 "data-readonly" => readonly,
-                "data-star-count" => stars,
+                "data-star-count" => options[:star] || 5,
                 "data-img" => star_img
   end
 
