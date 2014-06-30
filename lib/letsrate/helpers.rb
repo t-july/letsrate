@@ -31,7 +31,7 @@ module Helpers
 
     star_img = options[:star_img] || "star"
 
-    readonly=false
+    readonly = options[:read_only] || false
     if disable_after_rate
       readonly = current_user.present? ? !rateable_obj.can_rate?(current_user.id, dimension) : true
     end
